@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background: black;
+}
+.grid {
+    overflow: auto;
+    border: 1px solid white;
+}
+.cell {
+    float: left;
+}
