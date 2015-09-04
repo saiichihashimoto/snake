@@ -2,12 +2,24 @@
     box-sizing: border-box;
 }
 body {
-    background: black;
+    background: white;
 }
 .grid {
     overflow: auto;
-    border: 1px solid white;
+    border: 1px solid black;
 }
 .cell {
     float: left;
+}
+.food {
+    background: green;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.06),0 1px 3px rgba(0, 0, 0, 0.55)
+}
+.snake {
+    background: #fafafa;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.06),0 1px 3px rgba(0, 0, 0, 0.55)
+}
+.snake-head {
+    background: #dadada;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.06),0 1px 3px rgba(0, 0, 0, 0.55)
 }

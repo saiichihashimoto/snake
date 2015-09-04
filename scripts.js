@@ -35,7 +35,7 @@ $(function() {
     var snake = [{ y: 15, x: 15 }];
     var direction = { y: 1, x: 0 };
     var next_direction = null;
-    $('#cell_' + snake[0].y + '_' + snake[0].x).css('background', 'white');
+    $('#cell_' + snake[0].y + '_' + snake[0].x).addClass('snake').addClass('snake-head');
 
     var food;
     while (true) {
@@ -44,10 +44,10 @@ $(function() {
             break;
         }
     }
-    $('#cell_' + food.y + '_' + food.x).css('background', 'green');
+    $('#cell_' + food.y + '_' + food.x).addClass('food');
 
     var interval = setInterval(function() {
-        $('#cell_' + snake[snake.length - 1].y + '_' + snake[snake.length - 1].x).css('background', '');
+        $('#cell_' + snake[snake.length - 1].y + '_' + snake[snake.length - 1].x).removeClass('snake');
         for (var i = snake.length - 1; i > 0; i--) {
             snake[i].y = snake[i - 1].y;
             snake[i].x = snake[i - 1].x;
@@ -56,13 +56,13 @@ $(function() {
             direction = next_direction;
             next_direction = null;
         }
+        $('#cell_' + snake[0].y + '_' + snake[0].x).removeClass('snake-head');
         snake[0].y = (snake[0].y + direction.y + HEIGHT) % HEIGHT;
         snake[0].x = (snake[0].x + direction.x + WIDTH) % WIDTH;
-        $('#cell_' + snake[0].y + '_' + snake[0].x).css('background', 'white');
+        $('#cell_' + snake[0].y + '_' + snake[0].x).addClass('snake').addClass('snake-head');
 
         for (var i = 1; i < snake.length; i++) {
             if (snake[0].y === snake[i].y && snake[0].x === snake[i].x) {
-                console.log('GAME OVER', snake.length);
                 clearInterval(interval);
                 return;
             }
@@ -70,6 +70,7 @@ $(function() {
 
         if (snake[0].y === food.y && snake[0].x === food.x) {
             snake.push({ y: snake[snake.length - 1].y, x: snake[snake.length - 1].x });
+            $('#cell_' + food.y + '_' + food.x).removeClass('food');
             while (true) {
                 food = { y: Math.floor(Math.random() * HEIGHT), x: Math.floor(Math.random() * WIDTH) };
                 var breakit = true;
@@ -83,7 +84,7 @@ $(function() {
                     break;
                 }
             }
-            $('#cell_' + food.y + '_' + food.x).css('background', 'green');
+            $('#cell_' + food.y + '_' + food.x).addClass('food');
         }
     }, INTERVAL_SPEED);
 
