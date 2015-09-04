@@ -74,7 +74,7 @@ $(function() {
                 food = { y: Math.floor(Math.random() * HEIGHT), x: Math.floor(Math.random() * WIDTH) };
                 var breakit = true;
                 for (var i = 0; i < snake.length; i++) {
-                    if (food.y === snake[i].y || food.x === snake[i].x) {
+                    if (food.y === snake[i].y && food.x === snake[i].x) {
                         breakit = false;
                         break;
                     }
