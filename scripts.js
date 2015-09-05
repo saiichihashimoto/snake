@@ -20,6 +20,8 @@ $(function() {
         .css('height', HEIGHT * SIZE)
         .css('width', WIDTH * SIZE);
 
+    var score = $('<div class="score">1</div>').appendTo('body');
+
     for (var y = 0; y < HEIGHT; y++) {
         var row = $('<div class="row"></div>')
             .appendTo(grid)
@@ -71,6 +73,7 @@ $(function() {
 
         if (snake[0].y === food.y && snake[0].x === food.x) {
             snake.push({ y: snake[snake.length - 1].y, x: snake[snake.length - 1].x });
+            score.text(snake.length);
             ga('send', 'event', 'snake', 'ate', 'food', snake.length);
             $('#cell_' + food.y + '_' + food.x).removeClass('food');
             while (true) {
