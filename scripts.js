@@ -63,6 +63,7 @@ $(function() {
 
         for (var i = 1; i < snake.length; i++) {
             if (snake[0].y === snake[i].y && snake[0].x === snake[i].x) {
+                ga('send', 'event', 'snake', 'lost');
                 clearInterval(interval);
                 return;
             }
@@ -70,6 +71,7 @@ $(function() {
 
         if (snake[0].y === food.y && snake[0].x === food.x) {
             snake.push({ y: snake[snake.length - 1].y, x: snake[snake.length - 1].x });
+            ga('send', 'event', 'snake', 'ate', 'food', snake.length);
             $('#cell_' + food.y + '_' + food.x).removeClass('food');
             while (true) {
                 food = { y: Math.floor(Math.random() * HEIGHT), x: Math.floor(Math.random() * WIDTH) };
