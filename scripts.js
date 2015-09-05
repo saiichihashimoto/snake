@@ -94,6 +94,9 @@ $(function() {
     }, INTERVAL_SPEED);
 
     $(document).on('keydown', function(e) {
+        if (e.shiftKey) {
+            return;
+        }
         switch (e.which) {
             case KEY_LEFT:
             case H:
